@@ -9,6 +9,10 @@ const content = defineCollection({
         date: z.coerce.date(),
         demo: z.string(),
         type: z.enum(["game", "blog", "website", "tool", "other"]),
+        source: z.object({
+            name: z.string(),
+            link: z.string(),
+        }),
         stack: z.array(z.object({
           name: z.string(),
           link: z.string(),
