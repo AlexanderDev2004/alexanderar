@@ -1,18 +1,36 @@
 ---
-import { getCollection } from 'astro:content';
 import "../styles/global.css";
 import { FaLinkedin } from "react-icons/fa";
-
+import { FaGithub } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
+import { MdOutlineMail } from "react-icons/md";
+import { PiReadCvLogo } from "react-icons/pi";
 ---
 
 <div id="container">
-	
 	<main>
-		<section id="hero">
-			<FaLinkedin className='text-5xl'/>
-			<h1 class="text-6xl font-bold text-red-500 mb-4">Alexander Agung Raya</h1>
-		</section>
+	  <section id="hero" class="flex flex-col items-center">
+		<div class="flex gap-4">
+		  <a href="https://www.linkedin.com/in/alexanderagungraya/" target="_blank" rel="noopener noreferrer">
+			<FaLinkedin className="text-5xl hover:text-blue-600" />
+		  </a>
+		  <a href="https://github.com/AlexanderDev2004" target="_blank" rel="noopener noreferrer">
+			<FaGithub className="text-5xl hover:text-gray-500" />
+		  </a>
+		  <a href="https://www.instagram.com/alexjynx01/" target="_blank" rel="noopener noreferrer">
+			<FaInstagram className="text-5xl hover:text-pink-500" />
+		  </a>
+		  <a href="mailto:alexanderagungraya08@gmail.com">
+			<MdOutlineMail className="text-5xl hover:text-red-500" />
+		  </a>
+		  <a href="/src/assets/Alexander Agung Raya - Resume.pdf">
+			<PiReadCvLogo className="text-5xl hover:text-green-500" />
+		  </a>
+		</div>
+  
+		<h1 class="text-6xl font-bold text-red-500 mt-4">Alexander Agung Raya</h1>
+	  </section>
 	</main>
-</div>
+  </div>
 
 
