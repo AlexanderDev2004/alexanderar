@@ -8,8 +8,8 @@ import { PiReadCvLogo } from "react-icons/pi";
 import Footer from "./ui/Footer.astro";
 ---
 <div id="container" data-theme="dark">
-	<main class="bg-white dark:bg-gray-900 text-black dark:text-white min-h-screen flex items-center justify-center">
-	  <section id="hero" class="flex flex-col items-center">
+	<main class="md:max-xl:flex bg-white dark:bg-gray-900 text-black dark:text-white min-h-screen flex items-center justify-center">
+	  <section id="hero" class="flex flex-col items-center md:max-xl:flex-row">
 		<div class="flex gap-4">
 		  <a href="https://www.linkedin.com/in/alexanderagungraya/" target="_blank" rel="noopener noreferrer">
 			<FaLinkedin className="text-5xl hover:text-blue-600" />
@@ -28,9 +28,9 @@ import Footer from "./ui/Footer.astro";
 		  </a>
 		</div>
   
-		<h1 class="text-6xl font-bold text-red-500 mt-4">Alexander Agung Raya</h1>
+		<h1 class="text-center sm:text-left text-6xl font-bold text-red-500 mt-4">Alexander Agung Raya</h1>
+		<Footer class:list={["flex", "flex-col", "items-center", "md:max-xl:flex-row"]} />
 	  </section>
 	</main>
 </div>
-<!-- <Footer /> -->
 
