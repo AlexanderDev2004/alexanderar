@@ -3,7 +3,9 @@ import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 import Footer from '../components/ui/Footer.astro';
 import { getCollection } from "astro:content";
-const content = await getCollection('content');
+const games = await getCollection("games");
+const website = await getCollection("website");
+
 // const matches = import.meta.glob('./posts/*.mdx', { eager: true });
 // const games = await getCollection('games');
 // const content = Object.values(matches);
@@ -15,5 +17,26 @@ const content = await getCollection('content');
 
 <Layout>
 	<Welcome />  
-	
+	<h1>Games</h1>
+<ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  {games.map((game) => (
+    <li>
+      <h2>{game.data.title}</h2>
+      <p>{game.data.description}</p>
+      <img src={game.data.image} alt={game.data.title} />
+    </li>
+  ))}
+</ul>
+
+<h1>Website</h1>
+<ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  {website.map((website) => (
+    <li>
+      <h2>{website.data.title}</h2>
+      <p>{website.data.description}</p>
+      <img src={website.data.image} alt={website.data.title} />
+    </li>
+  ))}
+</ul>
+	<Footer />
 </Layout>
