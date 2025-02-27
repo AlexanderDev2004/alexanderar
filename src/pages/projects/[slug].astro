@@ -1,0 +1,21 @@
+---
+import { getCollection } from "astro:content";
+
+const allProjects = [
+  ...(await getCollection("games")),
+  ...(await getCollection("website")),
+];
+
+const { slug } = Astro.params;
+const project = allProjects.find((p) => p.id === slug);
+
+if (!project) {
+  throw new Error(`Project dengan slug '${slug}' tidak ditemukan!`);
+}
+---
+
+<h1 class="text-3xl font-bold">{project.data.title}</h1>
+<p>{project.data.description}</p>
+<article class="prose">
+  {project.body}
+</article>
