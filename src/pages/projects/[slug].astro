@@ -1,17 +1,18 @@
 ---
 import { getCollection } from "astro:content";
 
-const allProjects = [
-  ...(await getCollection("games")),
-  ...(await getCollection("website")),
-];
-
-const { slug } = Astro.params;
-const project = allProjects.find((p) => p.id === slug);
-
-if (!project) {
-  throw new Error(`Project dengan slug '${slug}' tidak ditemukan!`);
+export async function getStaticPaths() {
+  const allProjects = [
+    ...(await getCollection("games")),
+    ...(await getCollection("website")),
+  ];
+  return allProjects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
 }
+
+const { project } = Astro.props;
 ---
 
 <h1 class="text-3xl font-bold">{project.data.title}</h1>
