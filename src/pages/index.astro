@@ -3,8 +3,9 @@ import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 import Footer from '../components/ui/Footer.astro';
 import { getCollection } from "astro:content";
-const games = await getCollection("games");
-const website = await getCollection("website");
+const websiteProjects = await getCollection("website");
+const gameProjects = await getCollection("games");
+const projects = [...websiteProjects, ...gameProjects];
 
 // const matches = import.meta.glob('./posts/*.mdx', { eager: true });
 // const games = await getCollection('games');
@@ -13,11 +14,26 @@ const website = await getCollection("website");
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 
+projects.sort((a: any, b: any) => a.data.title.localeCompare(b.data.title));
 ---
 
-<Layout>
+<Layout seo={{ title: "Alexander Agung Raya" }}>
 	<Welcome />  
-	<h1>Games</h1>
+
+  <section>
+    <h2 class="text-3xl font-bold mb-4">Personal Projects</h2>
+    <ul>
+      {projects.slice(0, 3).map((project: any) => (
+        <li class="mb-4">
+          <p>{project.data.description}</p>
+          <a href={`/projects/${project.slug}`} class="text-blue-500">Read more</a>
+        </li>
+      ))}
+    </ul>
+    <a href="/projects" class="text-blue-500 font-semibold">See More →</a>
+  </section>
+
+	<!-- <h1>Games</h1>
 <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
   {games.map((game) => (
     <li>
@@ -26,17 +42,9 @@ const website = await getCollection("website");
       <img src={game.data.image} alt={game.data.title} />
     </li>
   ))}
-</ul>
+</ul> -->
 
-<h1>Website</h1>
-<ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
-  {website.map((website) => (
-    <li>
-      <h2>{website.data.title}</h2>
-      <p>{website.data.description}</p>
-      <img src={website.data.image} alt={website.data.title} />
-    </li>
-  ))}
-</ul>
+
+
 	<Footer />
 </Layout>
