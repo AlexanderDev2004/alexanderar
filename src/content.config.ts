@@ -9,6 +9,7 @@ const contentCollection = defineCollection({
     demo: z.string().optional(), // opsional jika tidak ada demo
     source: z.string().optional(), // opsional jika tidak ada source
     type: z.enum(["game", "blog", "website", "tool", "other"]),
+    slug: z.string(),
     stack: z.array(
       z.object({
         name: z.string(),

@@ -26,7 +26,7 @@ projects.sort((a: any, b: any) => a.data.title.localeCompare(b.data.title));
       {projects.slice(0, 3).map((project: any) => (
         <li class="mb-4">
           <p>{project.data.description}</p>
-          <a href={`/projects/${project.slug}`} class="text-blue-500">Read more</a>
+          <a href={`/projects/${project.id}`} class="text-blue-500">Read more</a>
         </li>
       ))}
     </ul>
