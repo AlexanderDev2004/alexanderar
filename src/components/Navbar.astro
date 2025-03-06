@@ -5,6 +5,15 @@ const links = [
   { name: "Certificates", href: "/Certificates" },
   { name: "Blog", href: "/blog" },
 ];
+
+const getTheme = () => {
+  if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+    return localStorage.getItem("theme");
+  }
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+};
+
+
 ---
 
 <nav class="bg-gray-900 text-white p-4">
