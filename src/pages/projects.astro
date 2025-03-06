@@ -3,38 +3,59 @@ import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import "../styles/global.css";
 import Footer from "../components/ui/Footer.astro";
+import { FaRegArrowAltCircleLeft } from "react-icons/fa";
 
 const website = await getCollection("website");
 const games = await getCollection("games");
 ---
 
 <Layout>
-  <div class="md:max-xl:flex bg-white dark:bg-black text-black dark:text-white min-h-screen flex items-center justify-center">
-    <div class="container mx-auto p-4">
-      <h1 class="text-5xl font-bold mb-4">Projects</h1>
+  <!-- Back Button -->
+  <a href="/" class="text-blue-500 font-semibold flex items-center gap-2">
+    <FaRegArrowAltCircleLeft className="text-lg" />
+    Back to Home
+  </a>
 
-      <h1 class="text-3xl font-bold mb-4">Website</h1>
-      <ul>
-        {website.map((project) => (
-          <li class="mb-4">
-            <h2 class="text-xl font-semibold">{project.data.title}</h2>
-            <p>{project.data.description}</p>
-            <a href={`/projects/${project.id}`} class="text-blue-500 dark:text-blue-300">Read more</a>
-          </li>
-        ))}
-      </ul>
+  <!-- Container -->
+  <div class="min-h-screen flex items-center justify-center bg-white dark:bg-black text-black dark:text-white">
+    <div class="container mx-auto p-6">
+      <h1 class="text-5xl font-bold mb-6 text-center">Projects</h1>
 
-      <h1 class="text-3xl font-bold mb-4">Games</h1>
-      <ul>
-        {games.map((game) => (
-          <li class="mb-4">
-            <h2 class="text-xl font-semibold">{game.data.title}</h2>
-            <p>{game.data.description}</p>
-            <a href={`/projects/${game.id}`} class="text-blue-500 dark:text-blue-300">Read more</a>
-          </li>
-        ))}
-      </ul>
+      <!-- Website Section -->
+      {website?.length > 0 && (
+        <>
+          <h2 class="text-3xl font-bold mb-4 py-2">Website</h2>
+          <ul>
+            {website.map((project) => (
+              <li class="mb-6">
+                <h3 class="text-xl font-semibold">{project.data.title}</h3>
+                <p class="text-gray-700 dark:text-gray-300">{project.data.description}</p>
+                <a href={`/projects/${project.id}`} class="text-blue-500 dark:text-blue-300 hover:underline">
+                  Read more
+                </a>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+
+      <!-- Games Section -->
+      {games?.length > 0 && (
+        <>
+          <h2 class="text-3xl font-bold mb-4 mt-8">Games</h2>
+          <ul>
+            {games.map((game) => (
+              <li class="mb-6">
+                <h3 class="text-xl font-semibold">{game.data.title}</h3>
+                <p class="text-gray-700 dark:text-gray-300">{game.data.description}</p>
+                <a href={`/projects/${game.id}`} class="text-blue-500 dark:text-blue-300 hover:underline">
+                  Read more
+                </a>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </div>
   </div>
 </Layout>
-
