@@ -9,7 +9,7 @@ export const workExperience = [
       position: "Vice Head of Game Development divisional",
       type: "hybrid",
       time: "2025 - Present",
-      period: [new Date(2025, 2), null],
+      period: [new Date(2025, 1), null],
       detail: [
         "Support the Head of the Miniclass in planning and managing all activities.",
         "Act as a liaison between the mentoring team and participants to ensure smooth communication.",
