@@ -6,84 +6,50 @@ import { PiReadCvLogo } from "react-icons/pi";
 import WorkExperience from "../components/WorkExperience.astro";
 ---
 
-<div
-  id="container"
-  class="relative flex items-center justify-center min-h-screen"
->
+<div id="container" class="flex flex-col items-center justify-center min-h-screen px-6 py-16">
   <main class="text-center flex flex-col items-center">
     <!-- Icon Sosial Media -->
     <div class="flex justify-center gap-4 text-4xl md:text-5xl">
-      <a
-        href="https://www.linkedin.com/in/alexanderagungraya/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="hover:text-blue-600"
-      >
-        <FaLinkedin
-          className="transition-transform duration-200 hover:scale-110"
-        />
+      <a href="https://www.linkedin.com/in/alexanderagungraya/" target="_blank" rel="noopener noreferrer" class="hover:text-blue-600">
+        <FaLinkedin className="transition-transform duration-200 hover:scale-110" />
       </a>
-      <a
-        href="https://github.com/AlexanderDev2004"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="hover:text-gray-500"
-      >
-        <FaGithub
-          className="transition-transform duration-200 hover:scale-110"
-        />
+      <a href="https://github.com/AlexanderDev2004" target="_blank" rel="noopener noreferrer" class="hover:text-gray-500">
+        <FaGithub className="transition-transform duration-200 hover:scale-110" />
       </a>
-      <a
-        href="https://www.instagram.com/alexjynx01/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="hover:text-pink-500"
-      >
-        <FaInstagram
-          className="transition-transform duration-200 hover:scale-110"
-        />
+      <a href="https://www.instagram.com/alexjynx01/" target="_blank" rel="noopener noreferrer" class="hover:text-pink-500">
+        <FaInstagram className="transition-transform duration-200 hover:scale-110" />
       </a>
-      <a
-        href="mailto:alexanderagungraya08@gmail.com"
-        class="hover:text-red-500"
-      >
-        <MdOutlineMail
-          className="transition-transform duration-200 hover:scale-110"
-        />
+      <a href="mailto:alexanderagungraya08@gmail.com" class="hover:text-red-500">
+        <MdOutlineMail className="transition-transform duration-200 hover:scale-110" />
       </a>
-      <a
-        href="/src/assets/AlexanderAgungRaya-Resume.pdf"
-        class="hover:text-green-500"
-      >
-        <PiReadCvLogo
-          className="transition-transform duration-200 hover:scale-110"
-        />
+      <a href="/src/assets/AlexanderAgungRaya-Resume.pdf" class="hover:text-green-500">
+        <PiReadCvLogo className="transition-transform duration-200 hover:scale-110" />
       </a>
     </div>
 
     <!-- Nama -->
-    <h1 class="mt-4 text-3xl md:text-6xl font-bold text-red-500">
-      Alexander Agung Raya
-    </h1>
-    <!-- cuma Deskripsi -->
+    <h1 class="mt-4 text-3xl md:text-6xl font-bold text-red-500">Alexander Agung Raya</h1>
+    <!-- Deskripsi -->
     <p class="mt-2 text-lg md:text-2xl text-gray-300">Software Engineer</p>
   </main>
 
-  <!-- About Me -->
-  <div class="absolute bottom-32 left-10 w-1/3">
-    <h1 class="text-2xl font-bold mb-4">About Me</h1>
-    <p class="text-lg text-gray-400">
-      I am a software engineer based in Indonesia with more than 4 years of
-      experience in software development. Most of what I create are web
-      applications and games, but I am open to other platforms as long as it
-      helps people solve the problems they face. I usually use TypeScript for
-      websites and C# for game development. Besides that, I speak Indonesian and
-      English fluently, and currently, I am learning Chinese (中国).
-    </p>
-  </div>
+  <!-- Container About Me & Work Experience -->
+  <div class="mt-12 w-full max-w-3xl flex flex-col gap-12 text-left">
+    <!-- About Me -->
+    <div>
+      <h1 class="text-2xl font-bold mb-4 text-white">About Me</h1>
+      <p class="text-lg text-gray-400">
+        I am a software engineer based in Indonesia with more than 4 years of experience in software development.
+        Most of what I create are web applications and games, but I am open to other platforms as long as it
+        helps people solve the problems they face. I usually use TypeScript for websites and C# for game development.
+        Besides that, I speak Indonesian and English fluently, and currently, I am learning Chinese (中国).
+      </p>
+    </div>
 
-  <!-- Work Experience -->
-  <div class="absolute left-10 top-52 w-1/2">
-    <WorkExperience />
+    <!-- Work Experience -->
+    <div>
+      <!-- <h1 class="text-2xl font-bold mb-4 text-white">Work Experience</h1> -->
+      <WorkExperience />
+    </div>
   </div>
 </div>
