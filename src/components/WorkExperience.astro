@@ -1,0 +1,38 @@
+---
+import { workExperience } from "../data/workExperience.ts";
+
+function formatDate(date: Date | null): string {
+  if (!date) return "Present"; // Jika null, tampilkan "Present"
+  const options: Intl.DateTimeFormatOptions = { year: "numeric", month: "long" };
+  return new Intl.DateTimeFormat("en-US", options).format(date);
+}
+---
+
+<section class="work-experience">
+  <h1 class="text-2xl font-bold text-white">Work Experience</h1>
+  <ul class="mt-4 space-y-4">
+    {workExperience.map((job) => (
+      <li class="text-lg md:text-xl text-gray-400">
+        <strong>{job.position}</strong> at 
+        {job.company.website ? (
+          <a href={job.company.website} class="text-blue-400 hover:underline">
+            {job.company.name}
+          </a>
+        ) : (
+          <span> {job.company.name} </span>
+        )}
+        ({job.type})<br />
+        
+        <span>{formatDate(job.period[0])} - {formatDate(job.period[1])}</span><br />
+        
+        <ul class="list-disc list-inside mt-2">
+          {job.detail.map((desc) => (
+            <li>{desc}</li>
+          ))}
+        </ul>
+        
+        <strong>Technologies:</strong> {job.technologies.join(", ")}
+      </li>
+    ))}
+  </ul>
+</section>
