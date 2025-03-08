@@ -27,7 +27,7 @@ projects.sort((a, b) => (a.data.title || "").localeCompare(b.data.title || ""));
           <li class="mb-4">
             <h3 class="font-semibold">{project.data.title}</h3>
             <p>{project.data.description}</p>
-            <p>{project.data.stack.map((tech: { name: string }) => tech.name).join(", ")}</p>
+            <p> tech : {project.data.stack.map((tech: { name: string }) => tech.name).join(", ")}</p>
             <a href={`/projects/${project.id}`} class="text-blue-500">Read more</a>
           </li>
         ))}
