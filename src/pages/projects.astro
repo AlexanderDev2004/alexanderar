@@ -30,6 +30,7 @@ const games = await getCollection("games");
               <li class="mb-6">
                 <h3 class="text-xl font-semibold">{project.data.title}</h3>
                 <p class="text-gray-700 dark:text-gray-300">{project.data.description}</p>
+                <p> tech : {project.data.stack.map((tech: { name: string }) => tech.name).join(", ")}</p>
                 <a href={`/projects/${project.id}`} class="text-blue-500 dark:text-blue-300 hover:underline">
                   Read more
                 </a>
@@ -48,6 +49,7 @@ const games = await getCollection("games");
               <li class="mb-6">
                 <h3 class="text-xl font-semibold">{game.data.title}</h3>
                 <p class="text-gray-700 dark:text-gray-300">{game.data.description}</p>
+                <p> tech : {game.data.stack.map((tech: { name: string }) => tech.name).join(", ")}</p>
                 <a href={`/projects/${game.id}`} class="text-blue-500 dark:text-blue-300 hover:underline">
                   Read more
                 </a>
