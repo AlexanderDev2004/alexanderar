@@ -29,7 +29,7 @@ export const certificates = [
     tag : "Course",
   },
   {
-    title: "Jadi Hacker",
+    title: "Jadi Hacker Ghosth in database",
     description: "Jadi Hacker Ghosth in database",
     image: "/image/Certificates/Ghost_jadiHacker.png",
     link: "",
