@@ -31,7 +31,7 @@ export const certificates = [
   {
     title: "Jadi Hacker",
     description: "Jadi Hacker Ghosth in database",
-    image: "/image/Certificates/Ghost_jadihacker.png",
+    image: "/image/Certificates/Ghost_jadiHacker.png",
     link: "",
     tag : "Workshop",
   },
