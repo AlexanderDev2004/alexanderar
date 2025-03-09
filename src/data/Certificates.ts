@@ -8,7 +8,7 @@ export const certificates = [
   },
 
   {
-    title: "Mtcna Mikrotik Certificate",
+    title: "MTCNA Mikrotik Certificate",
     description: "Certificate of Mikrotik Certified Network Associate",
     image: "/image/Certificates/MTCNA_Mikrotik.png",
     link: "https://mikrotik.com/training/certificates/c256554c0bbc217fe241",
