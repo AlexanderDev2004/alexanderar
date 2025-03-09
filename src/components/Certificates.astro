@@ -1,17 +1,23 @@
 ---
-import { certificates} from '../data/Certificates';
+import { certificates } from '../data/Certificates';
+
+// Urutkan berdasarkan title sertifikat
+const sortedCertificates = certificates.sort((a, b) => a.title.localeCompare(b.title));
 ---
 
 <section class="certificates">
-    <h1 class="text-2xl font-bold text-white">Certificates</h1>
-    <ul>
-        {certificates.map((certificates) => (
-            <li class="text-lg md:text-xl text-gray-400">
-                <strong>{certificates.title}</strong> at 
-                {certificates.tag}
-                <br />
-                
-                <span>{certificates.description}</span>
+    <h1 class="text-2xl font-bold text-white mb-4">Certificates</h1>
+    <ul class="space-y-4">
+        {sortedCertificates.map((certificate) => (
+            <li class="bg-gray-800 p-4 rounded-lg shadow-md">
+                <a href={certificate.link} target="_blank" class="flex flex-col md:flex-row items-center gap-4">
+                    <img src={certificate.image} alt={certificate.title} class="w-32 h-32 object-cover rounded-lg" />
+                    <div>
+                        <h2 class="text-lg font-semibold text-white">{certificate.title}</h2>
+                        <span class="text-gray-400">{certificate.description}</span>
+                        <p class="text-sm text-blue-400 mt-2">{certificate.tag}</p>
+                    </div>
+                </a>
             </li>
         ))}
     </ul>
