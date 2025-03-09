@@ -28,5 +28,12 @@ export const certificates = [
     link: "https://www.dicoding.com/certificates/N9ZOOR7J8ZG5",
     tag : "Course",
   },
+  {
+    title: "Jadi Hacker",
+    description: "Jadi Hacker Ghosth in database",
+    image: "/image/Certificates/Ghost_jadihacker.png",
+    link: "",
+    tag : "Workshop",
+  },
 
 ];
