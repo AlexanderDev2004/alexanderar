@@ -19,27 +19,40 @@ const sortedCertificates = certificates.sort((a, b) => a.title.localeCompare(b.t
 ---
 
 <Layout seo={{ title: "Alexander Agung Raya" }}>
-  <Welcome />  
-  <section class="container mx-auto p-6 flex flex-col items-center">
-    <h2 class="text-3xl font-bold mb-4 text-center">Personal Projects</h2>
-
+  <Welcome /> 
+   
+  <section class="container mx-auto px-6 py-8">
+    <h2 class="text-3xl font-bold text-center mb-6">Personal Projects</h2>
+  
     {projects.length > 0 ? (
-      <ul class="w-full max-w-2xl">
+      <ul class="w-full max-w-2xl mx-auto space-y-6">
         {projects.slice(0, 3).map((project) => (
-          <li class="mb-4">
-            <h3 class="font-semibold">{project.data.title}</h3>
-            <p>{project.data.description}</p>
-            <p> tech : {project.data.stack.map((tech: { name: string }) => tech.name).join(", ")}</p>
-            <a href={`/projects/${project.id}`} class="text-blue-500">Read more</a>
+          <li id={project.id} class="border-b border-gray-700 pb-4">
+            <h3 class="text-xl font-semibold">{project.data.title}</h3>
+            <p class="text-gray-300">{project.data.description}</p>
+            <p class="text-sm text-gray-400">
+              <span class="font-medium text-white">Tech:</span>{" "}
+              {project.data.stack.map((tech: { name: string }) => tech.name).join(", ")}
+            </p>
+            <a href={`/projects/${project.id}`} class="text-blue-400 hover:underline mt-2 inline-block">
+              Read more
+            </a>
           </li>
         ))}
       </ul>
     ) : (
-      <p class="text-gray-500">No projects available.</p>
+      <p class="text-gray-500 text-center">No projects available.</p>
     )}
-
-  <a href="/projects" class="text-blue-500 font-semibold">See More <FaRegArrowAltCircleRight className="inline-block ml-1" /></a>  
-</section>
+  
+    {projects.length > 3 && (
+      <div class="mt-6 text-center">
+        <a href="/projects" class="text-blue-400 hover:underline flex items-center justify-center">
+          See More <span class="ml-1">➜</span>
+        </a>
+      </div>
+    )}
+  </section>
+  
 
 <section class="container mx-auto px-6 py-8 flex flex-col items-center">
   <h1 class="text-3xl font-bold mb-6 text-center text-white">Certificates</h1>
