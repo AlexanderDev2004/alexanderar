@@ -8,7 +8,7 @@ export const workExperience = [
       },
       position: "Vice Head of Game Development divisional & Mentor",
       type: "hybrid",
-      time: "2025 - Present",
+      time: "contract",
       period: [new Date(2025, 1), null],
       detail: [
         "Support the Head of the Miniclass in planning and managing all activities.",
@@ -28,7 +28,7 @@ export const workExperience = [
       },
       position: "Human Resource Development",
       type: "hybrid",
-      time: "2023 - Present",
+      time: "contract",
       period: [new Date(2023, 7), null],
       detail: [
         "Human Resource Management – Managing and developing organization members to work effectively and achieve optimal performance.",
