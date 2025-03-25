@@ -3,15 +3,22 @@ import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import "../styles/global.css";
 import { FaRegArrowAltCircleLeft } from "react-icons/fa";
+import { CgWebsite } from "react-icons/cg";
+import { MdOutlineVideogameAsset } from "react-icons/md";
 
 const website = await getCollection("website");
 const games = await getCollection("games");
 ---
+
 <Layout>
-  <div class="min-h-screen flex flex-col items-center justify-center text-white px-6 py-12">
+  <div
+    class="min-h-screen flex flex-col items-center justify-center text-white px-6 py-12"
+  >
     <div class="container mx-auto max-w-4xl">
-      
-      <a href="/" class="text-gray-300 hover:text-blue-400 font-medium flex items-center gap-2 mb-6 px-4 py-2 rounded-md transition duration-200 mt-8">
+      <a
+        href="/"
+        class="text-gray-300 hover:text-blue-400 font-medium flex items-center gap-2 mb-6 px-4 py-2 rounded-md transition duration-200 mt-8"
+      >
         <FaRegArrowAltCircleLeft className="text-lg" />
         Back to Home
       </a>
@@ -19,46 +26,69 @@ const games = await getCollection("games");
       <h1 class="text-4xl font-bold text-center mb-10">Personal Projects</h1>
 
       {/* Website Section */}
-      {website?.length > 0 && (
-        <>
-          <h2 class="text-2xl font-bold border-b border-gray-600 pb-2 mb-6">Website</h2>
-          <div class="grid gap-8">
-            {website.map((project) => (
-              <div class="bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all">
-                <h3 class="text-xl font-semibold">{project.data.title}</h3>
-                <p class="text-gray-400 mt-2">{project.data.description}</p>
-                <p class="mt-2 text-sm text-gray-300">
-                  <strong>Tech:</strong> {project.data.stack.map((tech: { name: string }) => tech.name).join(", ")}
-                </p>
-                <a href={`/projects/${project.id}`} class="text-blue-400 hover:underline mt-3 inline-block">
-                  Read more →
-                </a>
-              </div>
-            ))}
-          </div>
-        </>
-      )}
+      {
+        website?.length > 0 && (
+          <>
+            <h2 class="text-2xl font-bold border-b border-gray-600 pb-2 mb-6 inline-flex items-center gap-2">
+              <CgWebsite />
+              Website
+            </h2>
+
+            <div class="grid gap-8">
+              {website.map((project) => (
+                <div class="bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all">
+                  <h3 class="text-xl font-semibold">{project.data.title}</h3>
+                  <p class="text-gray-400 mt-2">{project.data.description}</p>
+                  <p class="mt-2 text-sm text-gray-300">
+                    <strong>Tech:</strong>{" "}
+                    {project.data.stack
+                      .map((tech: { name: string }) => tech.name)
+                      .join(", ")}
+                  </p>
+                  <a
+                    href={`/projects/${project.id}`}
+                    class="text-blue-400 hover:underline mt-3 inline-block"
+                  >
+                    Read more →
+                  </a>
+                </div>
+              ))}
+            </div>
+          </>
+        )
+      }
 
       {/* Games Section */}
-      {games?.length > 0 && (
-        <>
-          <h2 class="text-2xl font-bold border-b border-gray-600 pb-2 mt-12 mb-6">Games</h2>
-          <div class="grid gap-8">
-            {games.map((game) => (
-              <div class="bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all">
-                <h3 class="text-xl font-semibold">{game.data.title}</h3>
-                <p class="text-gray-400 mt-2">{game.data.description}</p>
-                <p class="mt-2 text-sm text-gray-300">
-                  <strong>Tech:</strong> {game.data.stack.map((tech: { name: string }) => tech.name).join(", ")}
-                </p>
-                <a href={`/projects/${game.id}`} class="text-blue-400 hover:underline mt-3 inline-block">
-                  Read more →
-                </a>
-              </div>
-            ))}
-          </div>
-        </>
-      )}
+      {
+        games?.length > 0 && (
+          <>
+             <h2 class="text-2xl font-bold border-b border-gray-600 pb-2 mb-6 inline-flex items-center gap-2 pt-4">
+              <MdOutlineVideogameAsset />
+              Games
+            </h2>
+            <div class="grid gap-8">
+              {games.map((game) => (
+                <div class="bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all">
+                  <h3 class="text-xl font-semibold">{game.data.title}</h3>
+                  <p class="text-gray-400 mt-2">{game.data.description}</p>
+                  <p class="mt-2 text-sm text-gray-300">
+                    <strong>Tech:</strong>{" "}
+                    {game.data.stack
+                      .map((tech: { name: string }) => tech.name)
+                      .join(", ")}
+                  </p>
+                  <a
+                    href={`/projects/${game.id}`}
+                    class="text-blue-400 hover:underline mt-3 inline-block"
+                  >
+                    Read more →
+                  </a>
+                </div>
+              ))}
+            </div>
+          </>
+        )
+      }
     </div>
   </div>
 </Layout>;
