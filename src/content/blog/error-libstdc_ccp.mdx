@@ -1,34 +1,32 @@
 ---
-title: "Error: libstdc++.
-description: "Error: libstdc++."
+title: "Error: libstdc++"
+description: "Pengalaman error saat compile C++ di Windows menggunakan MSYS2 karena konflik dengan Laragon."
 date: "2023-03-01"
 type: "blog"
-tags : ["Programming"]
+tags : ["Programming", "Error"]
+slug: "error-libstdcpp"
+
 ---
 
-# Error: libstdc++-6.dll
-hai aku punya pengalaman saat untuk mencoba  melakukan coding C++ (CPP) di windows di IDE Vscode. jadi ceritanya aku mau membuat sebuah code hanya Hello world biasa saja namun saat aku  mau compile seperti ini :
+# Error: `libstdc++-6.dll`
+
+Hai, aku punya pengalaman saat mencoba coding C++ di Windows menggunakan VS Code. Ceritanya aku mau compile program `Hello World`, tapi muncul error saat menjalankan perintah berikut:
+
 ```bash
 g++ -g -o hello hello.cpp
 ```
-
-nah saat aku menjalankan perintah di atas terjadi error seperti ini :
-
+Hasil error-nya:
+    
 ```bash
-Starting build...
+    Starting build...
 cmd /c chcp 65001>nul && C:\msys64\ucrt64\bin\g++.exe -fdiagnostics-color=always -g D:\Devoloper\leetcode\hello.cpp -o D:\Devoloper\leetcode\hello.exe
 collect2.exe: error: ld returned 116 exit status
-
-Build finished with error(s).
-
- *  The terminal process terminated with exit code: -1. 
- *  Terminal will be reused by tasks, press any key to close it. 
+```
+Setelah tanya ke ChatGPT, solusinya ternyata ada konflik libstdc++-6.dll dari Laragon! Solusinya:
+```bash
+ren C:\laragon\bin\git\mingw64\bin\libstdc++-6.dll libstdc++-6.dll.bak
 ```
 
-nah akhirnya aku tanya di chatgpt ini masalah apa btw thank u gpt kwkwkw banyak sekali dari chatgpt mulai  dari setting MSYS2  seperti Reset & Update Database MSYS2, Ganti Mirror Repository, Perbaiki PGP Key Jika Masih Error dan Install Ulang `mingw-w64-ucrt-x86_64-gcc` lalu juga memakai
- Debugger (`gdb`) lalu ternyata ada masalah di library `libstdc++-6.dll` dan itu ada di bagian laragon akhirnya aku membuka di cmd di windows lalu dan aku masukan perintah 
+Dan akhirnya program berhasil di-compile!
 
-`ren C:\laragon\bin\git\mingw64\bin\libstdc++-6.dll libstdc++-6.dll.bak` dan akhirnya program saya di C++ berhasil di compile yeeeee………
-
-kenapa kok laragon bisa berpengaruh ke MSYS2?
-karena laragon memiliki bawaan saat Install seperti python, git, mysql, php dan lain-lain dan laragon juga memiliki `mingw` yang di install di laragon dan itu berpengaruh ke MSYS2 karena saat kita menginstall laragon kita juga menginstall `git` dan `mingw` yang ada di laragon dan itu berpengaruh ke MSYS2.
+Kenapa Laragon bisa berpengaruh? Karena Laragon membawa git dan mingw, yang ternyata bentrok dengan MSYS2.
