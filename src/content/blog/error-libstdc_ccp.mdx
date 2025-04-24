@@ -10,23 +10,24 @@ slug: "error-libstdcpp"
 
 # Error: `libstdc++-6.dll`
 
-Hai, aku punya pengalaman saat mencoba coding C++ di Windows menggunakan VS Code. Ceritanya aku mau compile program `Hello World`, tapi muncul error saat menjalankan perintah berikut:
+Hi, I had an experience while trying to code C++ on Windows using VS Code. I was attempting to compile a "Hello World" program, but encountered an error when executing the following command:
 
 ```bash
 g++ -g -o hello hello.cpp
 ```
-Hasil error-nya:
-    
+The error result:
+
 ```bash
     Starting build...
 cmd /c chcp 65001>nul && C:\msys64\ucrt64\bin\g++.exe -fdiagnostics-color=always -g D:\Devoloper\leetcode\hello.cpp -o D:\Devoloper\leetcode\hello.exe
 collect2.exe: error: ld returned 116 exit status
 ```
-Setelah tanya ke ChatGPT, solusinya ternyata ada konflik libstdc++-6.dll dari Laragon! Solusinya:
+After consulting with ChatGPT, the solution turned out to be a conflict with libstdc++-6.dll from Laragon! The solution:
+
 ```bash
 ren C:\laragon\bin\git\mingw64\bin\libstdc++-6.dll libstdc++-6.dll.bak
 ```
 
-Dan akhirnya program berhasil di-compile!
+And finally, the program compiled successfully!
 
-Kenapa Laragon bisa berpengaruh? Karena Laragon membawa git dan mingw, yang ternyata bentrok dengan MSYS2.
+Why does Laragon affect this? Because Laragon includes git and mingw, which conflict with MSYS2.
