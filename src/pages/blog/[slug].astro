@@ -4,84 +4,48 @@ import { FaArrowLeft } from "react-icons/fa";
 import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection("content", (entry) => entry.data.type === "blog");
-  return allPosts.map((post) => ({
-    params: { slug: post.slug },
-    props: { post },
+  const allblogs = [
+    ...(await getCollection("blog")),
+  ];
+
+  return allblogs.map((blog) => ({
+    params: { slug: blog.id },
+    props: { blog },
   }));
 }
 
-const { post } = Astro.props;
-const { title, description, image, date, tags, stack } = post.data;
+const { blog } = Astro.props;
 
-// Format tanggal untuk tampilan yang lebih baik
-const formattedDate = new Date(date).toLocaleDateString("en-US", {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-});
+if (!blog) {
+  throw new Error("Blog not found");
+}
+
+const { title, description,date,type,tags,slug } = blog.data;
 ---
 
-<Layout
-  title={title}
-  description={description}
-  ogImage={image ?? undefined} <!-- Untuk SEO, asumsikan Layout mendukung ogImage -->
-    ogTitle={title}
-  <main class="container mx-auto px-4 py-12">
-    <!-- Back Button -->
-    <a href="/blog" class="text-blue-500 font-semibold flex items-center gap-2 hover:text-blue-300">
-      <FaArrowLeft className="text-lg" />
-      Back
-    </a>
+<Layout>
+  <head>
+    <title>{title} - Blogs </title>
+  </head>
+  <body class="bg-gray-900 text-white">
+    <main class="container mx-auto px-4 py-12">
+      <!-- Back Button -->
+      <a
+        href="/projects"
+        class="text-blue-500 font-semibold flex items-center gap-2 hover:text-blue-300"
+      >
+        <FaArrowLeft className="text-lg" />
+        Back 
+      </a>
 
-    <!-- Blog Header -->
-    <h1 class="text-4xl font-bold text-blue-300 mt-6">{title}</h1>
-    <p class="text-gray-400 mt-2">Description: {description}</p>
-    <p class="text-gray-400 mt-2">Date: {formattedDate}</p>
-    {tags && tags.length > 0 && (
-      <p class="text-gray-400 mt-2">
-        Tags: {tags.join(", ")}
-      </p>
-    )}
-    {stack && stack.length > 0 && (
-      <p class="text-gray-400 mt-2">
-        Tech Stack:{" "}
-        {stack.map((tech, index) => (
-          <>
-            <a
-              href={tech.link}
-              class="text-blue-400 hover:underline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {tech.name}
-            </a>
-            {index < stack.length - 1 && ", "}
-          </>
-        ))}
-      </p>
-    )}
+      <h1 class="text-4xl font-bold text-blue-300 mt-6">{title}</h1>
+      <p class="text-gray-400 mt-2">description : {description}</p>
+      <p class="text-gray-400 mt-2">Date: {date}</p>
+      <p class="text-gray-400 mt-2">Type: {type}</p>
+      <p class="text-gray-400 mt-2">Tags: {tags}</p>
 
-    {image && (
-      <div class="mt-6 flex justify-start">
-        <img
-          src={image}
-          alt={`Preview image for ${title}`}
-          class="rounded-lg shadow-lg w-full max-w-3xl object-cover"
-          loading="lazy"
-        />
+      <div class="mt-8 prose prose-invert">
+        {blog.body}
       </div>
-    )}
 
-    <!-- Render MDX Content with Error Boundary -->
-    <article class="mt-8 prose prose-invert max-w-none">
-      {(() => {
-        try {
-          return <post.Component />;
-        } catch (error) {
-          return <p class="text-red-500">Error rendering MDX content: {error.message}</p>;
-        }
-      })()}
-    </article>
-  </main>
 </Layout>
