@@ -2,8 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import { FaRegArrowAltCircleLeft } from "react-icons/fa";
-import "../styles/global.css";
 import { CiSearch } from "react-icons/ci";
+
 const blog = await getCollection("blog");
 ---
 
@@ -23,22 +23,20 @@ const blog = await getCollection("blog");
     <h1 class="text-4xl font-bold text-center mb-10">All Blog</h1>
 
     <div class="flex items-center mb-6">
-      Search <CiSearch className="text-2xl text-gray-300" /> <input type="text" placeholder="(unfinished search )Search... use # for tags" class="p-2 rounded-md border border-gray-600 bg-gray-800 text-white ml-2" disabled />
+      Search <CiSearch className="text-2xl text-gray-300" />
+      <input type="text" placeholder="Search... use # for tags" class="p-2 rounded-md border border-gray-600 bg-gray-800 text-white ml-2" disabled />
     </div>
     
     <div class="grid gap-8">
-      {blog.map((blog) => (
+      {blog.map((item) => (
         <div class="bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all">
-          <h3 class="text-xl font-semibold">{blog.data.title}</h3>
-          <p class="text-gray-400 mt-2">{blog.data.description}</p>
+          <h3 class="text-xl font-semibold">{item.data.title}</h3>
+          <p class="text-gray-400 mt-2">{item.data.description}</p>
           <p class="mt-2 text-sm text-gray-300">
-            <strong>Tags :</strong>{" "}
-            {blog.data.tags
-              .map((tags: { name: string }) => tags.name)
-              .join(", ")}
+            <strong>Tags :</strong> {item.data.tags.join(", ")}
           </p>
           <a
-            href={`/projects/${blog.id}`}
+            href={`/blog/${item.id}`}
             class="text-blue-400 hover:underline mt-3 inline-block"
           >
             Read more →
@@ -46,4 +44,5 @@ const blog = await getCollection("blog");
         </div>
       ))}
     </div>
+  </div>
 </Layout>
