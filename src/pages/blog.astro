@@ -4,8 +4,7 @@ import { getCollection } from "astro:content";
 import { FaRegArrowAltCircleLeft } from "react-icons/fa";
 import "../styles/global.css";
 
-const allblog = await getCollection("content", (entry) => entry.data.type === "blog");
-const sortedBlogs = allblog.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
+const blog = await getCollection("blog");
 ---
 
 <Layout
@@ -23,28 +22,26 @@ const sortedBlogs = allblog.sort((a, b) => new Date(b.data.date) - new Date(a.da
 
     <h1 class="text-4xl font-bold text-center mb-10">All Blog</h1>
 
-    {sortedBlogs.length === 0 ? (
-      <p class="text-gray-400 text-center">No blog posts available yet.</p>
-    ) : (
-      <div class="grid gap-8">
-        {sortedBlogs.map((blog) => (
-          <div class="bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all">
-            <h3 class="text-xl font-semibold text-white">{blog.data.title}</h3>
-            <p class="text-gray-400 mt-2">{blog.data.description}</p>
-            {blog.data.tags && blog.data.tags.length > 0 && (
-              <p class="text-gray-400 mt-2">
-                Tags: {blog.data.tags.join(", ")}
-              </p>
-            )}
-            <a
-              href={`/blog/${blog.slug}`}
-              class="text-blue-400 hover:underline mt-3 inline-block"
-            >
-              Read more →
-            </a>
-          </div>
-        ))}
-      </div>
-    )}
-  </div>
+    Search <input type="text" placeholder="(BELUM JADI SABAR )Search... use # for tags" class="mb-6 p-2 rounded-md border border-gray-600 bg-gray-800 text-white" disabled/>
+    
+    <div class="grid gap-8">
+      {blog.map((blog) => (
+        <div class="bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all">
+          <h3 class="text-xl font-semibold">{blog.data.title}</h3>
+          <p class="text-gray-400 mt-2">{blog.data.description}</p>
+          <p class="mt-2 text-sm text-gray-300">
+            <strong>Tags :</strong>{" "}
+            {blog.data.tags
+              .map((tags: { name: string }) => tags.name)
+              .join(", ")}
+          </p>
+          <a
+            href={`/projects/${blog.id}`}
+            class="text-blue-400 hover:underline mt-3 inline-block"
+          >
+            Read more →
+          </a>
+        </div>
+      ))}
+    </div>
 </Layout>
